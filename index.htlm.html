@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="DR AT HOME Boyacá - Servicios médicos domiciliarios especializados en medicina general, cuidados paliativos, ecografía POCUS, canabinoides medicinales y atención geriátrica." />
+  <meta name="keywords" content="médico a domicilio, Boyacá, cuidados paliativos, ecografía, canabinoides medicinales, telemedicina, atención adulto mayor" />
+  <title>DR AT HOME Boyacá | Medicina Domiciliaria y Cuidados Paliativos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2a7f62;
+      --primary-dark: #1e5e48;
+      --secondary: #f8b400;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --danger: #dc3545;
+      --success: #28a745;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light);
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .logo i {
+      margin-right: 0.8rem;
+      font-size: 2.2rem;
+    }
+    
+    .header-tagline {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Navigation */
+    nav {
+      background-color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: var(--primary-dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .nav-cta {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+      text-align: center;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 2rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    section {
+      margin-bottom: 3rem;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: var(--secondary);
+      margin: 0.8rem auto;
+    }
+    
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .service-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .service-icon {
+      background-color: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+    }
+    
+    .service-content {
+      padding: 1.5rem;
+    }
+    
+    .service-content h3 {
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+    }
+    
+    .service-content ul {
+      list-style-position: inside;
+      margin-bottom: 1rem;
+    }
+    
+    .service-content li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Emergency Banner */
+    .emergency-banner {
+      background-color: var(--danger);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+    
+    /* Contact Section */
+    .contact {
+      background-color: white;
+      padding: 3rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      background-color: var(--primary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-group label {
+      font-weight: 600;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Open Sans', sans-serif;
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+      color: var(--dark);
+    }
+    
+    .btn-secondary:hover {
+      background-color: #e0a800;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-block {
+      display: block;
+      width: 100%;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background-color: #f1f8f5;
+      padding: 3rem 2rem;
+      border-radius: 8px;
+    }
+    
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .testimonial-card {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-dark);
+      color: white;
+      padding: 3rem 2rem 1.5rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-column h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column li {
+      margin-bottom: 0.8rem;
+    }
+    
+    .footer-column a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column a:hover {
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 1.2rem;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-user-md"></i>
+      <span>DR AT HOME Boyacá</span>
+    </div>
+    <p class="header-tagline">Servicios médicos domiciliarios especializados en medicina general, cuidados paliativos, ecografía POCUS y atención geriátrica</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://wa.me/573026892921" class="btn btn-secondary">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Atención Médica Domiciliaria Profesional en Boyacá</h1>
+      <p>Brindamos cuidado médico integral en la comodidad de su hogar, con profesionalismo y calidez humana.</p>
+      <a href="#contacto" class="btn btn-primary">Solicitar Visita</a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Emergency Banner -->
+    <div class="emergency-banner">
+      <h2><i class="fas fa-exclamation-triangle"></i> Atención de Urgencias 24/7</h2>
+      <p>Para emergencias médicas, llame inmediatamente al <strong>+57 302 6892921</strong></p>
+    </div>
+
+    <!-- Services Section -->
+    <section id="servicios">
+      <h2 class="section-title">Nuestros Servicios</h2>
+      <div class="services-grid">
+        <!-- Medicina Domiciliaria General -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="service-content">
+            <h3>Medicina Domiciliaria General</h3>
+            <ul>
+              <li>Consulta médica en domicilio</li>
+              <li>Diagnóstico y tratamiento de enfermedades agudas</li>
+              <li>Control de enfermedades crónicas (HTA, diabetes, EPOC)</li>
+              <li>Valoración geriátrica integral</li>
+              <li>Formulación de medicamentos</li>
+              <li>Curaciones y retiro de puntos</li>
+              <li>Control prenatal básico</li>
+              <li>Valoración pediátrica</li>
+              <li>Certificados médicos</li>
+              <li>Interconsultas con especialistas</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Ecografía POCUS -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-procedures"></i>
+          </div>
+          <div class="service-content">
+            <h3>Ecografía POCUS</h3>
+            <p>Evaluación ecográfica focalizada en el hogar:</p>
+            <ul>
+              <li>Ecografía pulmonar (evaluación de líquido, neumonía)</li>
+              <li>Ecografía abdominal (vesícula, riñones, hígado)</li>
+              <li>Evaluación de vías urinarias</li>
+              <li>Ecografía básica cardíaca (FOCUS)</li>
+              <li>Guía para procedimientos</li>
+              <li>Evaluación de trombosis venosa</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Cuidados Paliativos -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <div class="service-content">
+            <h3>Cuidados Paliativos</h3>
+            <ul>
+              <li>Manejo avanzado del dolor</li>
+              <li>Bloqueos nerviosos para control del dolor</li>
+              <li>Cuidados al final de la vida</li>
+              <li>Acompañamiento emocional y espiritual</li>
+              <li>Manejo de síntomas complejos</li>
+              <li>Coordinación con equipos de paliativos</li>
+              <li>Apoyo a familiares y cuidadores</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Canabinoides Medicinales -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-cannabis"></i>
+          </div>
+          <div class="service-content">
+            <h3>Canabinoides Medicinales</h3>
+            <ul>
+              <li>Evaluación para uso de cannabis medicinal</li>
+              <li>Formulación médica supervisada</li>
+              <li>Dispensación de productos autorizados</li>
+              <li>Venta al detal de productos con THC/CBD</li>
+              <li>Seguimiento clínico especializado</li>
+              <li>Talleres educativos sobre usos terapéuticos</li>
+              <li>Asesoría legal y regulatoria</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Salud Mental -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <div class="service-content">
+            <h3>Salud Mental</h3>
+            <ul>
+              <li>Atención en crisis psicológica/psiquiátrica</li>
+              <li>Evaluación de riesgo suicida</li>
+              <li>Acompañamiento en depresión y ansiedad</li>
+              <li>Telemedicina psicológica</li>
+              <li>Intervenciones en crisis familiares</li>
+              <li>Coordinación con redes de apoyo</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Procedimientos Domiciliarios -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-syringe"></i>
+          </div>
+          <div class="service-content">
+            <h3>Procedimientos en Casa</h3>
+            <ul>
+              <li>Electrocardiograma</li>
+              <li>Toma de muestras de laboratorio</li>
+              <li>Aplicación de medicamentos (IM, SC, EV)</li>
+              <li>Hidratación parenteral</li>
+              <li>Cateterismo vesical</li>
+              <li>Oxigenoterapia</li>
+              <li>Nebulizaciones</li>
+              <li>Soporte en postoperatorios</li>
+              <li>Curaciones avanzadas</li>
+              <li>Administración de quimioterapia oral</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros">
+      <h2 class="section-title">Nuestro Enfoque</h2>
+      <div style="background-color: white; padding: 2rem; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+        <p>En <strong>DR AT HOME Boyacá</strong> combinamos la excelencia médica con la calidez humana, llevando atención especializada directamente a su hogar. Nuestro equipo está capacitado para manejar situaciones complejas con profesionalismo y empatía.</p>
+        
+        <h3 style="margin-top: 1.5rem; color: var(--primary-dark);">Beneficios de la Medicina Domiciliaria:</h3>
+        <ul style="margin-top: 1rem; list-style-position: inside;">
+          <li>Evita desplazamientos innecesarios</li>
+          <li>Entorno familiar más confortable</li>
+          <li>Atención personalizada y sin prisas</li>
+          <li>Menor riesgo de infecciones nosocomiales</li>
+          <li>Integración del núcleo familiar en el cuidado</li>
+          <li>Mayor adherencia a tratamientos</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <h2 class="section-title">Testimonios</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"El doctor llegó puntual, fue muy profesional y resolvió el problema de mi madre sin necesidad de llevarla al hospital. Totalmente recomendado."</p>
+          <p class="testimonial-author">- María G., Tunja</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Gracias por el manejo del dolor de mi esposo en su etapa final. Su compasión y conocimiento hicieron una gran diferencia."</p>
+          <p class="testimonial-author">- Familia Rodríguez, Duitama</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"La ecografía a domicilio fue clave para diagnosticar a tiempo la neumonía de mi abuelo. Excelente servicio."</p>
+          <p class="testimonial-author">- Carlos M., Sogamoso</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+      <h2 class="section-title">Contacto</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Información de Contacto</h3>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h4>Teléfono/WhatsApp</h4>
+              <p><a href="https://wa.me/573026892921">+57 302 6892921</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4>Correo Electrónico</h4>
+              <p><a href="mailto:info@drathomeboyaca.com">info@drathomeboyaca.com</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <div>
+              <h4>Instagram</h4>
+              <p><a href="https://www.instagram.com/athomedr/" target="_blank">@athomedr</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4>Área de Cobertura</h4>
+              <p>Tunja, Duitama, Sogamoso y municipios aledaños</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Solicitar Visita</h3>
+          <form name="contact" method="POST" data-netlify="true">
+            <div class="form-group">
+              <label for="name">Nombre Completo</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Teléfono</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo Electrónico</label>
+              <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="service">Servicio de Interés</label>
+              <select id="service" name="service">
+                <option value="consulta">Consulta Médica Domiciliaria</option>
+                <option value="pocus">Ecografía POCUS</option>
+                <option value="paliativos">Cuidados Paliativos</option>
+                <option value="cannabis">Canabinoides Medicinales</option>
+                <option value="salud-mental">Salud Mental</option>
+                <option value="procedimientos">Procedimientos en Casa</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Enviar Solicitud</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h3>DR AT HOME Boyacá</h3>
+        <p>Medicina domiciliaria especializada con enfoque humanizado y profesional.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/athomedr/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/573026892921" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:info@drathomeboyaca.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Servicios</h3>
+        <ul>
+          <li><a href="#servicios">Medicina Domiciliaria</a></li>
+          <li><a href="#servicios">Ecografía POCUS</a></li>
+          <li><a href="#servicios">Cuidados Paliativos</a></li>
+          <li><a href="#servicios">Canabinoides Medicinales</a></li>
+          <li><a href="#servicios">Salud Mental</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Enlaces Rápidos</h3>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#" data-netlify-identity-button>Área de Pacientes</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Registro INVIMA</a></li>
+          <li><a href="#">Aviso Legal Cannabis Medicinal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 DR AT HOME Boyacá. Todos los derechos reservados. | Registro Médico COL123456</p>
+    </div>
+  </footer>
+
+  <!-- Netlify Identity Widget -->
+  <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Netlify Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
